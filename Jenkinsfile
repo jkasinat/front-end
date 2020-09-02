@@ -1,6 +1,11 @@
 pipeline{
 
-    agent any
+    agent {
+    docker {
+      image 'schoolofdevops/carts-maven'
+    }
+
+  }
 
     tools{
        NodeJS 'NodeJS4.8.6' 
