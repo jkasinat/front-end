@@ -6,11 +6,7 @@ pipeline{
     }
 
   }
-
-    tools{
-       NodeJS 'NodeJS4.8.6' 
-    }
-    
+   
 
     stages{
         stage('build'){
