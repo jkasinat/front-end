@@ -41,7 +41,20 @@ npm run package'''
         archiveArtifacts '**/distribution/*.zip'
       }
     }
-   
+
+    stage('Docker Package and Publish') {
+      steps {
+        script {
+          docker.withRegistry('https://index.docker.io/v1/', 'dockerlogin') {
+            def dockerImage = docker.build("jrkasinat/frontend:v${env.BUILD_ID}", "./")
+            dockerImage.push()
+            dockerImage.push("latest")
+          }
+        }
+
+      }
+    }
+
   }
   post {
     always {
